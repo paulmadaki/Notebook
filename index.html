@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudNote - Hybrid Notebook</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script> 
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">CloudNote</div>
+        <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open notes">☰</button>
+        <div class="nav-actions">
+            <button id="themeToggle"><i class="fas fa-moon"></i></button>
+            <button id="authBtn">Login</button>
+        </div>
+    </nav>
+
+    <!-- AUTH MODAL -->
+    <div id="authModal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+            <button id="closeAuthBtn" class="modal-close">×</button>
+            <h3 id="authTitle">Account</h3>
+
+            <div class="auth-grid">
+                <div>
+                    <label for="authEmail">Email</label>
+                    <input id="authEmail" type="email" placeholder="you@example.com">
+                </div>
+                <div>
+                    <label for="authPassword">Password</label>
+                    <input id="authPassword" type="password" placeholder="password">
+                </div>
+            </div>
+
+            <div class="auth-actions">
+                <button id="emailSignUpBtn">Sign Up</button>
+                <button id="emailSignInBtn">Sign In</button>
+                <button id="resetPwdBtn">Reset Password</button>
+            </div>
+
+            <div style="margin-top:10px; text-align:center;">
+                <button id="googleSignInBtn">Sign in with Google</button>
+            </div>
+
+            <div id="authMessage" class="auth-message" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <!-- MAIN APP -->
+    <main class="app-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <button id="newNoteBtn">+ New Note</button>
+            <button id="viewTrashBtn">View Trash</button>
+            <input type="text" id="search" placeholder="Search notes...">
+
+            <ul id="notesList"></ul>
+        </aside>
+
+        <div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+
+        <!-- EDITOR -->
+        <section class="editor-container">
+
+            <!-- TOOLBAR -->
+            <div class="toolbar">
+                <button data-cmd="bold"><i class="fas fa-bold"></i></button>
+                <button data-cmd="italic"><i class="fas fa-italic"></i></button>
+                <button data-cmd="underline"><i class="fas fa-underline"></i></button>
+                <button data-cmd="insertUnorderedList"><i class="fas fa-list-ul"></i></button>
+
+                <button id="pinBtn" title="Pin/Unpin note"><i class="fas fa-thumbtack"></i></button>
+                <button id="saveBtn">Save Now</button>
+                <button id="deleteBtn">Delete</button>
+                <button id="restoreBtn" style="display:none">Restore</button>
+                <button id="permDeleteBtn" style="display:none">Delete Permanently</button>
+                <button id="exportPdf">PDF</button>
+            </div>
+
+            <!-- NOTE TITLE -->
+            <input id="noteTitle" placeholder="Note title..." />
+
+            <!-- EDITOR AREA -->
+            <div id="editor" contenteditable="true" placeholder="Start typing..."></div>
+
+            <!-- STATUS BAR -->
+            <div class="status-bar">
+                <span id="charCount">0 chars</span>
+                <span id="saveStatus">All changes saved</span>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Firebase (compat for this app) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+    <!-- App Script -->
+    <script src="app.js"></script>
+
+</body>
+</html>
+
